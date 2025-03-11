@@ -72,6 +72,5 @@ php publish.php # will send a message to all users
 
 
 # Excercise for the reader
-Docker will need to hardened, this is using the official image. 
-
-
+* Docker will need to hardened, this is using the official image. 
+* Meaning, you'll either need to setup nginx/haproxy, to handle the SSL, or use a different image. AND supply your own certs.
