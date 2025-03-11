@@ -53,6 +53,9 @@ https://localhost:8000/index.php # open a few of these.
 php publish.php # sends a message to all open pages (including different browsers) that have the above page open.
 ```
 
+
+# Example 2: multiple private topics, and one common public topic
+
 ## indexUser.php
 https://localhost:8000/indexUser.php?user=1
 https://localhost:8000/indexUser.php?user=2
