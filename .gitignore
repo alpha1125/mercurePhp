@@ -1,0 +1,9 @@
+/cert/
+
+/.idea
+
+/vendor
+
+.env
+.env.local
+.env.*.local

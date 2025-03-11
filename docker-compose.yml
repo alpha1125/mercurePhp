@@ -1,0 +1,19 @@
+# docker-compose.yml
+services:
+  mercure:
+    image: dunglas/mercure:v0.18
+    container_name: mercure
+    volumes:
+      - ./mercure.Caddyfile:/etc/caddy/Caddyfile
+      - ./cert:/cert  # Mount certificates directory
+      - mercure_data:/data
+    environment:
+      - PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY}
+      - SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY}
+    ports:
+      - "3080:80"
+      - "3443:443"
+    restart: unless-stopped
+
+volumes:
+  mercure_data:

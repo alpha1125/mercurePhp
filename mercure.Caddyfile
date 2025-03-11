@@ -1,0 +1,45 @@
+{
+    # Global options
+    admin off
+}
+
+# HTTP (redirect to HTTPS)
+:80 {
+    log {
+        format console
+    }
+    redir https://{host}{uri}
+}
+
+# HTTPS with self-signed certificates
+:443 {
+
+    # setup your own certificates! see readme.md for one way to do it with Symfony.
+    tls /cert/mercure.crt /cert/mercure.key
+
+    log {
+        format console
+    }
+
+    route {
+        mercure {
+            transport_url bolt:///data/mercure.
+
+            publisher_jwt {$PUBLISHER_JWT_KEY}
+            subscriber_jwt {$SUBSCRIBER_JWT_KEY}
+
+            # in production, you should use a real urls.
+            cors_origins https://127.0.0.1:8000 https://localhost:8000
+
+            cors_allowed_credentials true
+            publish_origins *
+            anonymous
+
+            # in production, we shouldn't have the UI available.
+            ui
+
+        }
+
+        respond /healthz 200
+    }
+}
